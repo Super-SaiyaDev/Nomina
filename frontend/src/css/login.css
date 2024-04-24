@@ -1,0 +1,162 @@
+/* Login.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+
+.container-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.container-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.frm {
+  width: 380px;
+  padding: 30px 25px 30px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 15px 15px 60px #083257;
+  transition: all 0.5s ease-in;
+}
+
+.frm:hover {
+  box-shadow: -15px -12px 60px #0c4672;
+}
+
+.input-group .icon {
+  text-transform: uppercase;
+  color: black;
+  font-size: 25px;
+}
+
+.icon .logo-name {
+  font-size: 25px;
+  color: #4a5c6a;
+}
+
+.input-group h1 {
+  color: rgba(155, 119, 19, 0.699);
+  text-shadow: 2px 5px 20px #76b9a8;
+  font-size: 15px;
+  font-weight: 650;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.input-feild {
+  position: relative;
+}
+
+hr {
+  opacity: 1% #9ecaed;
+  margin-top: 25px;
+  margin: 20px 0px 5px 0px;
+  width: 100%;
+}
+
+.or {
+  position: relative;
+  top: -22px;
+
+  left: 130px;
+}
+
+.or span {
+  font-size: 10px;
+  text-transform: uppercase;
+  background-color: #fff;
+  padding: 15px;
+  left: 130px;
+}
+
+.other-logins {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.other-logins a {
+  margin: 5px;
+  padding: 8px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.other-logins .facebook {
+  background-color: #4a4f6a;
+  color: rgba(16, 16, 212, 0.705);
+}
+
+.other-logins .google {
+  color: whitesmoke;
+  background-color: #4a4f6a;
+}
+
+.other-logins .instagram {
+  color: whitesmoke;
+  background-color: #4a4f6a;
+
+}
+
+.logo-span {
+  margin-left: 12px;
+  font-size: 15px;
+  color: whitesmoke;
+}
+
+.link-router {
+  display: grid;
+  grid-template-columns: repeat(1fr, 1fr);
+  margin: 5px 0px 11px 12px;
+}
+
+.link-router span {
+  color: black;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.link-router .link {
+  margin: 5px;
+  color: rgb(15, 66, 233);
+  font-size: 15px;
+  text-align: left;
+}
+
+.button {
+  perspective: 800px;
+  text-align: center;
+}
+
+.button .btn-lgn {
+  background-color: #11212d; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  margin: 5px 0px 0px 15px;
+  width: 50%;
+  border: none;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.button .btn-lgn:hover {
+  transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  background-color: #4a5c6a; /* Blue */
+}

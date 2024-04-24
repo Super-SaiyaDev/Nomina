@@ -1,0 +1,79 @@
+.content-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh;
+}
+
+.content-panel-group {
+  display: flex;
+  margin-left: 180px;
+}
+
+.content-panel-feild {
+  margin: 10px;
+  padding: 20px;
+  background-color: #253745;
+  border-radius: 15px;
+  width: 45vh;
+
+}
+
+.content-card .card-title {
+  font-size: 15px;
+  color: rgb(14, 41, 221);
+}
+
+.content-card .card-price{
+  font-size: 25px;
+  color: whitesmoke;
+}
+
+.card-info {
+  text-align: left;
+  color: white;
+}
+
+
+.increment {
+  font-size: 15px;
+  color: white;
+}
+
+.card-info .values {
+  font-size: 15px;
+  color: white;
+}
+
+
+.content-card .icon {
+  font-size: 20px;
+  background-color: rgba(14, 42, 221, 0.317);
+  border-radius: 50px;
+}
+
+.content-grafic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 200px;
+}
+
+.grafic-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.grafic-feild{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  background-color: #253745;
+  border-radius: 15px;
+  width: 680px;
+  height: 350px;
+}
+
