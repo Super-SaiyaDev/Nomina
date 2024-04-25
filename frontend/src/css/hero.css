@@ -7,7 +7,7 @@
 
 .content-panel-group {
   display: flex;
-  margin-left: 180px;
+  margin-left: 240px;
 }
 
 .content-panel-feild {
@@ -15,7 +15,7 @@
   padding: 20px;
   background-color: #253745;
   border-radius: 15px;
-  width: 45vh;
+  width: 40vh;
 
 }
 
