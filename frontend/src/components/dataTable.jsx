@@ -14,14 +14,14 @@ const handlerDelete = async (id, setData) => {
       na;
       console.log(response);
     } else {
-      console.log(response.data);
+      console.log(responlse.data);
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-function DataTable({ data, columns }) {
+function DataTable({ data, rows, columns }) {
   const rowsPerPage = 8; // Cambia esto al número de filas que quieres por tabla
   const [currentTable, setCurrentTable] = useState(0);
   const tables = [];
@@ -45,8 +45,8 @@ function DataTable({ data, columns }) {
           {data.length > 0 ? (
             tables[currentTable].map((item, key) => (
               <tr key={key}>
-                {columns.map((column, key) => (
-                  <td key={key}>{item[column]}</td>
+                {rows.map((cell, key) => (
+                  <td key={key}>{item[cell]}</td>
                 ))}
                 <td>
                   <Link to={`/update/${item.IdUsers}`}>
@@ -71,10 +71,10 @@ function DataTable({ data, columns }) {
           )}
         </tbody>
       </table>
-      <div>
+      <div className="container-btn-next">
         {data.length > 0 &&
           tables.map((_, index) => (
-            <button key={index} onClick={() => setCurrentTable(index)}>
+            <button className="btn-next" key={index} onClic={() => setCurrentTable(index)}>
               {index + 1}
             </button>
           ))}

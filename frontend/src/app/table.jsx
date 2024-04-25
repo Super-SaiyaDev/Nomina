@@ -14,7 +14,7 @@ const Table = ({}) => {
 
   useEffect(() => {
     const fechData = async () => {
-      const response = await axios.get(`http://localhost:3000/api/users/`);
+      const response = await axios.get(`http://localhost:3000/api/employees`);
       const data = response.data.body;
       console.log(data);
       setData(data);
@@ -23,12 +23,47 @@ const Table = ({}) => {
     fechData();
   }, []);
 
-  const columns = ["IdUsers", "NameUser", "Lastname", "Users", "Clave", "activo"];
+  const columns = [
+    "RNC",
+    "Name",
+    "Last",
+    "activo",
+    "Gender",
+    "Civil Status",
+    "Tel",
+    "BirthDate",
+    "Address",
+    "Country",
+    "State",
+    "City",
+    "Postal Code",
+    "Email",
+    "Clave",
+  ];
+
+  const rows = [
+    "RNC",
+    "NameEmployee",
+    "Lastname",
+    "activo",
+    "Gender",
+    "CivilStatus",
+    "Tel",
+    "BirthDate",
+    "Address",
+    "Country",
+    "State",
+    "City",
+    "PostalCode",
+    "Email",
+    "Clave",
+  ];
 
   return (
-    <div className="content">
-      <div className="content-T">
-        <div className="header-table">
+    <div className="datatable ">
+      <div className="container-datatable">
+
+        <div className="header-table ">
           <div className="title-table">
             <h1>Users Management</h1>
           </div>
@@ -62,47 +97,49 @@ const Table = ({}) => {
           </div>
         </div>
 
-        <div className="table-responsive">
-          <DataTable data={datos} columns={columns} />
-        </div>
+        <div className="content-Table scrollable-table">
+          <div className=" table-responsive ">
+            <DataTable data={datos} columns={columns} rows={rows} />
+          </div>
 
-        {/* <table>
+          {/* <table>
           <thead>
             <tr>
-              <th>id</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>telefono</th>
-              <th>email</th>
-              <th>presupuesto</th>
+            <th>id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>telefono</th>
+            <th>email</th>
+            <th>presupuesto</th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
             {datos.map((items, key) => (
               <tr key={key}>
-                <td>{items.id}</td>
-                <td>{items.nombre}</td>
-                <td>{items.usuario}</td>
-                <td>{items.clave}</td>
-                <td>{items.activo}</td>
-                <td>
-                  <Link to={`/update/${items.id}`}>
-                    <button>
-                      <RiEdit2Fill />
-                    </button>
-                  </Link>
-                </td>
-                <td>
-                  <button onClick={() => handlerDelete(items.id)}>
-                    <MdDelete />
-                  </button>
-                </td>
+              <td>{items.id}</td>
+              <td>{items.nombre}</td>
+              <td>{items.usuario}</td>
+              <td>{items.clave}</td>
+              <td>{items.activo}</td>
+              <td>
+              <Link to={`/update/${items.id}`}>
+              <button>
+              <RiEdit2Fill />
+              </button>
+              </Link>
+              </td>
+              <td>
+              <button onClick={() => handlerDelete(items.id)}>
+              <MdDelete />
+              </button>
+              </td>
               </tr>
             ))}
-          </tbody>
-        </table> */}
+            </tbody>
+          </table> */}
+        </div>
+        {/* Aquí va el contenido principal */}
       </div>
-      {/* Aquí va el contenido principal */}
     </div>
   );
 };
