@@ -5,7 +5,7 @@ const controlador = require("./controller");
 
 //! listar
 router.get("/", async (req, res) => {
-  const items = await controlador.list();
+  const items = await controlador.listEmployees();
   respuesta.success(req, res, items, 200);
 });
 

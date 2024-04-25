@@ -1,8 +1,7 @@
 const db = require("../../database/database");
-const table = "empleado";
 
-const list = () => {
-  return db.list(table);
+const listEmployees = () => {
+  return db.listEmployees("employees");
 };
 
 const list_inactive = () => {
@@ -34,7 +33,7 @@ const login = (data) => {
 };
 
 module.exports = {
-  list,
+  listEmployees,
   search,
   list_inactive,
   reactivated,

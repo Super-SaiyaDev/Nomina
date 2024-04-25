@@ -8,6 +8,7 @@ const config = require("./config");
 
 //! modulo cliente
 const Empleador = require("./module/empleado/router");
+const moduleUsers = require("./module/Users/router");
 // const login = require("./module/system/login/router");
 
 const app = express();
@@ -30,6 +31,6 @@ app.use(cookie())
 
 //? Rutas
 app.use("/api/clientes", Empleador);
-// app.use("/api/users", login);
+app.use("/api/users", moduleUsers);
 
 module.exports = app;

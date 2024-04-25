@@ -1,24 +1,15 @@
 const db = require("mysql");
 const config = require("../config");
-require('dotenv').config();
 
-//? no se para que sirve
-//? const { configDotenv } = require("dotenv");
-//? const { connect } = require("../modulos/client/router");
+const conection = {
+  host: config.mysql.host,
+  user: config.mysql.user,
+  password: config.mysql.password,
+  database: config.mysql.database,
+};
 
-const Database = db.createConnection({
-  host: process.env.mysqlHost,
-  user: process.env.mysqlUser,
-  password: process.env.mysqlPassword,
-  database: process.env.mysqlDb,
-});
+const Database = db.createConnection(conection);
 
-// const Database = db.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "Edel_Son_1520_Arias",
-//   database: "login",
-// });
 
 Database.connect((err) => {
   if (err) return console.log("Error connexion in the data of base :", err);
@@ -34,7 +25,9 @@ Database.on("error", (err) => {
   }
 });
 
-const list = (table) => {
+//! Users
+
+const listUsers = (table) => {
   return new Promise((resolve, reject) => {
     Database.query(
       `SELECT * FROM ${table} WHERE activo = 'activo'`,
@@ -44,6 +37,32 @@ const list = (table) => {
     );
   });
 };
+
+const login = (table, data) => {
+  return new Promise((resolve, reject) => {
+    Database.query(
+      `SELECT * FROM ${table} WHERE user = "${data.user}" and clave = "${data.clave}"`,
+      (err, res) => {
+        err ? reject(err) : resolve(res);
+      }
+    );
+  });
+};
+
+
+//! employees 
+
+const listEmployees = (table) => {  
+  return new Promise((resolve, reject) => {
+    Database.query(
+      `SELECT * FROM ${table}`,
+      (err, res) => {
+        err ? reject(err) : resolve(res);
+      }
+    );
+  });
+
+}
 
 // const list_inactive = (table) => {
 //   return new Promise((resolve, reject) => {
@@ -101,24 +120,14 @@ const list = (table) => {
 //   });
 // };
 
-// const login = (table, data) => {
-//   return new Promise((resolve, reject) => {
-//     Database.query(
-//       `SELECT * FROM ${table} WHERE user = "${data.user}" and clave = "${data.clave}"`,
-//       (err, res) => {
-//         err ? reject(err) : resolve(res);
-//       }
-//     );
-//   });
-// };
-
-// module.exports = {
-//   search,
-//   list,
-//   list_inactive,
-//   reactivated,
-//   add,
-//   delet,
-//   update,
-//   login,
-// };
+module.exports = {
+  // search,
+  listUsers,
+  listEmployees,
+  // list_inactive,
+  // reactivated,
+  // add,
+  // delet,
+  // update,
+  login,
+};
