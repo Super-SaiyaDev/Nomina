@@ -6,15 +6,17 @@ import "../css/table.css";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoMdPersonAdd } from "react-icons/io";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
+import Create from "../components/create";
 
-const Table = ({}) => {
+const Table = ({ columns, rows, api }) => {
   const [isInputFocused, setInputFocused] = useState(false);
-
   const [datos, setData] = useState([{}]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     const fechData = async () => {
-      const response = await axios.get(`http://localhost:3000/api/employees`);
+      const response = await axios.get(api.url);
       const data = response.data.body;
       console.log(data);
       setData(data);
@@ -23,46 +25,9 @@ const Table = ({}) => {
     fechData();
   }, []);
 
-  const columns = [
-    "RNC",
-    "Name",
-    "Last",
-    "activo",
-    "Gender",
-    "Civil Status",
-    "Tel",
-    "BirthDate",
-    "Address",
-    "Country",
-    "State",
-    "City",
-    "Postal Code",
-    "Email",
-    "Clave",
-  ];
-
-  const rows = [
-    "RNC",
-    "NameEmployee",
-    "Lastname",
-    "activo",
-    "Gender",
-    "CivilStatus",
-    "Tel",
-    "BirthDate",
-    "Address",
-    "Country",
-    "State",
-    "City",
-    "PostalCode",
-    "Email",
-    "Clave",
-  ];
-
   return (
     <div className="datatable ">
       <div className="container-datatable">
-
         <div className="header-table ">
           <div className="title-table">
             <h1>Users Management</h1>
@@ -70,11 +35,15 @@ const Table = ({}) => {
 
           <div className="navigate-table">
             <div className="btn-navigate">
-              <button>
-                <Link to="/create">
-                  <IoMdPersonAdd /> New User
-                </Link>
+              <button onClick={() => setModalIsOpen(true)}>
+                <IoMdPersonAdd /> New User
               </button>
+              <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={() => setModalIsOpen(false)}
+              >
+                <Create setModalIsOpen={setModalIsOpen} />
+              </Modal>
 
               <button>
                 <Link to="/history">

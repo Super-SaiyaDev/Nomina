@@ -46,47 +46,55 @@ function Sliderbar() {
             className={activeMenu === "propiedad" ? "active" : ""}
             onClick={() => handleMenuClick("propiedad")}
           >
-            <Link className="lnk-sidebar" to="Reportes">
-              Propiedad
+            <Link className="lnk-sidebar" to="/empleados">
+              Empleados
             </Link>
           </li>
           <li
             className={activeMenu === "visitas" ? "active" : ""}
             onClick={() => handleMenuClick("visitas")}
           >
-            <Link className="lnk-sidebar" to="Reportes">
-              visitas
+            <Link className="lnk-sidebar" to="/contracto">
+              Contracto
             </Link>
           </li>
           <li
             className={activeMenu === "ventas" ? "active" : ""}
             onClick={() => handleMenuClick("ventas")}
           >
-            <Link className="lnk-sidebar" to="Reportes">
-              ventas
+            <Link className="lnk-sidebar" to="/deducciones">
+              Deducciones
             </Link>
           </li>
           <li
             className={activeMenu === "compra" ? "active" : ""}
             onClick={() => handleMenuClick("compra")}
           >
-            <Link className="lnk-sidebar" to="Reportes">
-              Compras
+            <Link className="lnk-sidebar" to="/percepciones">
+              Percepciones
             </Link>
           </li>
           <li
             className={activeMenu === "postventa" ? "active" : ""}
             onClick={() => handleMenuClick("postventa")}
           >
-            <Link className="lnk-sidebar" to="Reportes">
-              Postventa
+            <Link className="lnk-sidebar" to="/Nomina">
+              Nomina
+            </Link>
+          </li>
+          <li
+            className={activeMenu === "registroActividad" ? "active" : ""}
+            onClick={() => handleMenuClick("registroActividad")}
+          >
+            <Link className="lnk-sidebar" to="/RegistroActividad">
+              Registro de Actividad
             </Link>
           </li>
           <li
             className={activeMenu === "Reportes" ? "active" : ""}
             onClick={() => handleMenuClick("Reportes")}
           >
-            <Link className="lnk-sidebar" to="Reportes">
+            <Link className="lnk-sidebar" to="/Reportes">
               Reportes
             </Link>
           </li>

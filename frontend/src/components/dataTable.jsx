@@ -74,7 +74,7 @@ function DataTable({ data, rows, columns }) {
       <div className="container-btn-next">
         {data.length > 0 &&
           tables.map((_, index) => (
-            <button className="btn-next" key={index} onClic={() => setCurrentTable(index)}>
+            <button className="btn-next" key={index} onClick={() => setCurrentTable(index)}>
               {index + 1}
             </button>
           ))}

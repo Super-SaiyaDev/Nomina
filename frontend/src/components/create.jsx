@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import "../css/create.css";
 
-const Create = () => {
+const Create = ({ setModalIsOpen }) => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     nombre: "",
@@ -28,7 +28,7 @@ const Create = () => {
 
   return (
     <>
-      <div className="container-create">
+      <div className="container-frm-create">
         <form onSubmit={handlerSubmit} action="">
           <div className="title-create">
             <h1>crear usuario</h1>
@@ -48,6 +48,98 @@ const Create = () => {
               />
             </div>
 
+            <div className="input-feild-cr">
+              <label className="label-cr" htmlFor="">
+                usuario
+              </label>
+              <input
+                className="inputs"
+                type="text"
+                requerid
+                onChange={(e) =>
+                  setValues({ ...values, usuario: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="input-feild-cr">
+              <label className="label-cr" htmlFor="">
+                usuario
+              </label>
+              <input
+                className="inputs"
+                type="text"
+                requerid
+                onChange={(e) =>
+                  setValues({ ...values, usuario: e.target.value })
+                }
+              />
+            </div>
+            <div className="input-feild-cr">
+              <label className="label-cr" htmlFor="">
+                usuario
+              </label>
+              <input
+                className="inputs"
+                type="text"
+                requerid
+                onChange={(e) =>
+                  setValues({ ...values, usuario: e.target.value })
+                }
+              />
+            </div>
+            <div className="input-feild-cr">
+              <label className="label-cr" htmlFor="">
+                usuario
+              </label>
+              <input
+                className="inputs"
+                type="text"
+                requerid
+                onChange={(e) =>
+                  setValues({ ...values, usuario: e.target.value })
+                }
+              />
+            </div>
+            <div className="input-feild-cr">
+              <label className="label-cr" htmlFor="">
+                usuario
+              </label>
+              <input
+                className="inputs"
+                type="text"
+                requerid
+                onChange={(e) =>
+                  setValues({ ...values, usuario: e.target.value })
+                }
+              />
+            </div>
+            <div className="input-feild-cr">
+              <label className="label-cr" htmlFor="">
+                usuario
+              </label>
+              <input
+                className="inputs"
+                type="text"
+                requerid
+                onChange={(e) =>
+                  setValues({ ...values, usuario: e.target.value })
+                }
+              />
+            </div>
+            <div className="input-feild-cr">
+              <label className="label-cr" htmlFor="">
+                usuario
+              </label>
+              <input
+                className="inputs"
+                type="text"
+                requerid
+                onChange={(e) =>
+                  setValues({ ...values, usuario: e.target.value })
+                }
+              />
+            </div>
             <div className="input-feild-cr">
               <label className="label-cr" htmlFor="">
                 usuario
@@ -99,13 +191,9 @@ const Create = () => {
               </select>
             </div>
 
-            <div className="btn-create">
-              <button type="submit">create</button>
-              <button className="btn-redirect">
-                <Link className="lnk-redirect" to={"/table"}>
-                  Atras
-                </Link>
-              </button>
+            <div className="container-create">
+              <button className="btn-create" type="submit">create</button>
+              <button className="btn-redirect" onClick={() => setModalIsOpen(false)}>Close</button>
             </div>
           </div>
         </form>

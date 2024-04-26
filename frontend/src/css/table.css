@@ -164,7 +164,7 @@ tr:hover td {
 .table-responsive {
   overflow-x: auto;
   scrollbar-width: thin; /* Ancho de la barra de desplazamiento */
-  scrollbar-color: rebeccapurple orange; /* Color de la barra de desplazamiento y del track */
+  scrollbar-color: rgb(71, 54, 90) rgb(48, 47, 45); /* Color de la barra de desplazamiento y del track */
 
   /* Para navegadores Webkit (Chrome, Safari) */
   &::-webkit-scrollbar {
@@ -176,9 +176,9 @@ tr:hover td {
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgb(77, 69, 82); /* Color de la barra de desplazamiento */
+    background-color: rgb(255, 255, 255); /* Color de la barra de desplazamiento */
     border-radius: 20px; /* Radio de la esquina de la barra de desplazamiento */
-    border: 3px solid rgb(255, 253, 249); /* Borde alrededor de la barra de desplazamiento */
+    border: 3px solid rgb(255, 255, 255); /* Borde alrededor de la barra de desplazamiento */
   }
 
   /* Transición suave al cambiar el tamaño de la ventana */
