@@ -30,7 +30,7 @@ app.use(
 app.use(cookie())
 
 //? Rutas
-app.use("/api/clientes", Empleador);
+app.use("/api/employees", Empleador);
 app.use("/api/users", moduleUsers);
 
 module.exports = app;
