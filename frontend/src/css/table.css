@@ -4,14 +4,14 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  margin-left: 300px;
-  min-height: 60vh;
-}
+  margin-left: 270px;
+  min-height: 85vh;
+} 
 
 .container-datatable {
   padding: 20px;
-  height: 100%;
-  width: 90%;
+  height: 700px;
+  width: 98%;
   background-color: #11212d;
   border-radius: 10px;
   box-shadow: 0 0.4rem 0.8rem #0005;

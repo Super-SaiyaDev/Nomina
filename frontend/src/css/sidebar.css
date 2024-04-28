@@ -1,6 +1,6 @@
 /*? sliderbar */
 .sidebar {
-  position: fixed;
+  position: absolute;
   width: 235px;
   height: 100%;
   color: #fff;

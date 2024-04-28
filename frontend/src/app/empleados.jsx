@@ -3,37 +3,45 @@ import Sliderbar from "../components/sidebar";
 import NavbarSystem from "../components/navabar";
 import Table from "./table";
 
-const Users = () => {
+const Employees = () => {
   const columns = [
-    "# ",
+    "RNC",
     "Name",
-    "Last Name",
-    "User",
+    "Last",
+    "activo",
+    "Gender",
+    "Civil Status",
+    "Tel",
+    "BirthDate",
+    "Address",
+    "Country",
+    "State",
+    "City",
+    "Postal Code",
+    "Email",
     "Clave",
-    "Estado",
-    "# role",
-    "Name Role",
-    "Descriptions",
-    "Name Permission",
-    "Descripcions Permission",
   ];
 
   const rows = [
-    "IdUsers",
-    "NameUser",
-    "LastName",
-    "Users",
-    "Clave",
+    "RNC",
+    "NameEmployee",
+    "Lastname",
     "activo",
-    "IDrole",
-    "NameRole",
-    "Descriptions",
-    "NamePermission",
-    "DP",
+    "Gender",
+    "CivilStatus",
+    "Tel",
+    "BirthDate",
+    "Address",
+    "Country",
+    "State",
+    "City",
+    "PostalCode",
+    "Email",
+    "Clave",
   ];
 
   const api = {
-    url: "http://localhost:3000/api/users/",
+    url: "http://localhost:3000/api/employees",
   };
 
   return (
@@ -51,4 +59,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Employees;
