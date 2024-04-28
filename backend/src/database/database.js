@@ -10,7 +10,6 @@ const conection = {
 
 const Database = db.createConnection(conection);
 
-
 Database.connect((err) => {
   if (err) return console.log("Error connexion in the data of base :", err);
   console.log("connexion is runnig");
@@ -25,12 +24,33 @@ Database.on("error", (err) => {
   }
 });
 
-//! Users
+//? Users
 
-const listUsers = (table) => {
+const listUsers = () => {
   return new Promise((resolve, reject) => {
+    Database.query(`CALL ListUsers();`, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res[0]);
+      }
+    });
+  });
+};
+const searchUsers = (id) => {
+  return new Promise((resolve, reject) => {
+    Database.query(`CALL SearchUsers(${id});`, (err, res) => {
+      err ? reject(err) : resolve(res);
+    });
+  });
+};
+
+const createUsers = (data) => {
+  return new Promise((resolve, reject) => {
+    const { NameUser, LastName, Users, Clave, IdRole } = data;
     Database.query(
-      `SELECT * FROM ${table} WHERE activo = 'activo'`,
+      `CALL CreateUsers(?, ?, ?, ?, ?);`,
+      [NameUser, LastName, Users, Clave, IdRole],
       (err, res) => {
         err ? reject(err) : resolve(res);
       }
@@ -38,10 +58,13 @@ const listUsers = (table) => {
   });
 };
 
-const login = (table, data) => {
+const updateUsers = (id, data) => {
   return new Promise((resolve, reject) => {
+    const { NameUser, LastName, Users, Clave, IdRole } = data;
+    const sql = `CALL UpdateUsers(?,?,?,?,?,?);`;
     Database.query(
-      `SELECT * FROM ${table} WHERE user = "${data.user}" and clave = "${data.clave}"`,
+      sql,
+      [id, NameUser, LastName, Users, Clave, IdRole],
       (err, res) => {
         err ? reject(err) : resolve(res);
       }
@@ -49,20 +72,57 @@ const login = (table, data) => {
   });
 };
 
-
-//! employees 
-
-const listEmployees = (table) => {  
+const deletUser = (id) => {
   return new Promise((resolve, reject) => {
-    Database.query(
-      `SELECT * FROM ${table}`,
-      (err, res) => {
-        err ? reject(err) : resolve(res);
-      }
-    );
+    const sql = `CALL DeleteUsers(${id});`;
+    Database.query(sql, (err, res) => {
+      err ? reject(err) : resolve(res);
+    });
   });
+};
 
-}
+// const listInactive = () => {
+//   return new Promise((resolve, reject) => {
+//     Database.query(
+//       `SELECT * FROM ${table} WHERE activo = 'inactivo'`,
+//       (err, res) => {
+//         err ? reject(err) : resolve(res);
+//       }
+//     );
+//   });
+// };
+
+// const reactivated = (table, id) => {
+//   return new Promise((resolve, reject) => {
+//     Database.query(
+//       `update ${table} set activo = 'activo' WHERE id = ${id};`,
+//       (err, res) => {
+//         err ? reject(err) : resolve(res);
+//       }
+//     );
+//   });
+// };
+
+// const login = (table, data) => {
+//   return new Promise((resolve, reject) => {
+//     Database.query(
+//       `SELECT * FROM ${table} WHERE user = "${data.user}" and clave = "${data.clave}"`,
+//       (err, res) => {
+//         err ? reject(err) : resolve(res);
+//       }
+//     );
+//   });
+// };
+
+//? employees
+
+const listEmployees = (table) => {
+  return new Promise((resolve, reject) => {
+    Database.query(`SELECT * FROM ${table}`, (err, res) => {
+      err ? reject(err) : resolve(res);
+    });
+  });
+};
 
 // const list_inactive = (table) => {
 //   return new Promise((resolve, reject) => {
@@ -121,13 +181,15 @@ const listEmployees = (table) => {
 // };
 
 module.exports = {
-  // search,
   listUsers,
-  listEmployees,
+  searchUsers,
+  createUsers,
+  updateUsers,
+  deletUser,
+  // login,
   // list_inactive,
   // reactivated,
-  // add,
   // delet,
   // update,
-  login,
+  // listEmployees,
 };

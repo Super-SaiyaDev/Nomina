@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 //   respuesta.success(req, res, items, 200);
 // });
 
-// //! buscar
+// //buscar
 // router.get("/:id", async (req, res) => {
 //   try {
 //     const items = await controlador.search(req.params.id);
