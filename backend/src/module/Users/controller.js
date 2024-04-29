@@ -17,10 +17,12 @@ const updateUsers = (id,data) => {
 };
 
 const delteUsers = (id) => {
-  return db.deletUser(id);
+  return db.deleteUser(id);
 };
 
 
+const loginUsers = (data) => {
+  return db.loginUsers(data);
+}
 
-
-module.exports = { listUsers, searchUsers, createUsers, updateUsers, delteUsers};
+module.exports = { listUsers, searchUsers, createUsers, updateUsers, delteUsers, loginUsers};

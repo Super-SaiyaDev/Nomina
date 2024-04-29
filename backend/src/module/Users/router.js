@@ -9,17 +9,19 @@ router.get("/", async (req, res) => {
   respuesta.success(req, res, items, 200);
 });
 
-//? search Users
 router.get("/:id", async (req, res) => {
   try {
     console.log(req.params.id);
     const items = await controlador.searchUsers(req.params.id);
     respuesta.success(req, res, items, 200);
   } catch (err) {
-    respuesta.error(req, res, err, 500);
+    if (err.Error === "Error: El usuario no existe") {
+      respuesta.error(req, res, err, 404);
+    } else {
+      respuesta.error(req, res, err, 500);
+    }
   }
 });
-
 //? Create Users
 router.post("/", async (req, res) => {
   try {
@@ -32,7 +34,7 @@ router.post("/", async (req, res) => {
 });
 
 //? Update Users
-router.post("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const items = await controlador.updateUsers(req.params.id, req.body);
     respuesta.success(req, res, items, 200);
@@ -48,6 +50,16 @@ router.delete("/:id", async (req, res) => {
     respuesta.success(req, res, "datos eliminados correctamente", 200);
   } catch (err) {
     respuesta.error(req, res, err, 500);
+  }
+});
+
+//? login 
+router.post("/login", async (req, res) => {
+  try {
+    const items = await controlador.loginUsers(req.body);
+    respuesta.handleLogin(req, res, items);
+  } catch (err) {
+    respuesta.handleLogin(req, res, err);
   }
 });
 

@@ -14,10 +14,15 @@ exports.error = (req, res, mesnsaje, status = 500) => {
   });
 };
 
-// exports.handleLogin = (req, res, items) => {
-//   if (items.length > 0) {
-//     res.json({ status: `Success` });
-//   } else {
-//     res.json({ Error: `Error` });
-//   }
-// };
+exports.handleLogin = (req, res, items) => {
+  if (items && items.length === 0 ) {
+    res.status(401).json({
+      error: true,
+      status: "Login Not Success",
+      message: "Invalid username or password",
+    });
+    return;
+  } else {
+    res.status(200).json({ error: false, status: "Success", message: "Login Success" });
+  }
+};

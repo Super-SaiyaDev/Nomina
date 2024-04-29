@@ -1,5 +1,6 @@
 const db = require("mysql");
 const config = require("../config");
+const bcrypt = require("bcrypt");
 
 const conection = {
   host: config.mysql.host,
@@ -37,50 +38,100 @@ const listUsers = () => {
     });
   });
 };
+
 const searchUsers = (id) => {
   return new Promise((resolve, reject) => {
-    Database.query(`CALL SearchUsers(${id});`, (err, res) => {
-      err ? reject(err) : resolve(res);
-    });
-  });
-};
-
-const createUsers = (data) => {
-  return new Promise((resolve, reject) => {
-    const { NameUser, LastName, Users, Clave, IdRole } = data;
-    Database.query(
-      `CALL CreateUsers(?, ?, ?, ?, ?);`,
-      [NameUser, LastName, Users, Clave, IdRole],
-      (err, res) => {
-        err ? reject(err) : resolve(res);
-      }
-    );
-  });
-};
-
-const updateUsers = (id, data) => {
-  return new Promise((resolve, reject) => {
-    const { NameUser, LastName, Users, Clave, IdRole } = data;
-    const sql = `CALL UpdateUsers(?,?,?,?,?,?);`;
-    Database.query(
-      sql,
-      [id, NameUser, LastName, Users, Clave, IdRole],
-      (err, res) => {
-        err ? reject(err) : resolve(res);
-      }
-    );
-  });
-};
-
-const deletUser = (id) => {
-  return new Promise((resolve, reject) => {
-    const sql = `CALL DeleteUsers(${id});`;
+    let sql = `CALL SearchUsers(?);`;
+    const inserts = [id];
+    sql = db.format(sql, inserts);
     Database.query(sql, (err, res) => {
-      err ? reject(err) : resolve(res);
+      if (err) {
+        reject({ message: "Database error", error: err });
+      } else if (res[0].length === 0) {
+        reject({ Error: "El usuario no existe" });
+      } else {
+        resolve(res[0]);
+      }
     });
   });
 };
 
+const createUsers = async (data) => {
+  return new Promise(async (resolve, reject) => {
+    const { NameUser, LastName, Users, Clave, IdRole } = data;
+    let hashedPassword;
+    try {
+      hashedPassword = await bcrypt.hash(Clave, 10);
+    } catch (error) {
+      reject({ message: "Error hashing password", error: err });
+      return;
+    }
+    let sql = `CALL CreateUsers(?, ?, ?, ?, ?);`;
+    const inserts = [NameUser, LastName, Users, hashedPassword, IdRole];
+    sql = db.format(sql, inserts);
+    Database.query(sql, (err, res) => {
+      err ? reject({ message: "Database error", error: err }) : resolve(res);
+    });
+  });
+};
+
+const updateUsers = async (id, data) => {
+  return new Promise(async (resolve, reject) => {
+    const { NameUser, LastName, Users, Clave, IdRole } = data;
+    let hashedPassword;
+    try {
+      hashedPassword = await bcrypt.hash(Clave, 10);
+    } catch (error) {
+      reject({ message: "Error hashing password", error: err });
+      return;
+    }
+    let sql = `CALL UpdateUsers(?,?,?,?,?,?);`;
+    const inserts = [id, NameUser, LastName, Users, hashedPassword, IdRole];
+    sql = db.format(sql, inserts);
+    Database.query(sql, (err, res) => {
+      if (err) {
+        console.error(err);
+        reject({ message: "Database error", error: err });
+      } else {
+        resolve(res);
+      }
+    });
+  });
+};
+
+const deleteUser = (id) => {
+  return new Promise((resolve, reject) => {
+    let sql = `CALL DeleteUsers(?);`;
+    let inserts = [id];
+    sql = db.format(sql, inserts);
+    Database.query(sql, (err, res) => {
+      err ? reject({ message: "Database error", error: err }) : resolve(res);
+    });
+  });
+};
+
+const loginUsers = (data) => {
+  return new Promise((resolve, reject) => {
+    let sql = `SELECT * FROM Users WHERE Users = ?`;
+    let inserts = [data.user];
+    sql = db.format(sql, inserts);
+    Database.query(sql, async (err, res) => {
+      if (err) {
+        reject({ message: "Database error", error: err });
+      } else if (res.length === 0) {
+        reject({ message: "Invalid username or password" });
+      } else {
+        const user = res[0];
+        const passwordMatches = await bcrypt.compare(data.clave, user.Clave);
+        if (passwordMatches) {
+          resolve(user);
+        } else {
+          reject({ message: "Invalid username or password" });
+        }
+      }
+    });
+  });
+};
 // const listInactive = () => {
 //   return new Promise((resolve, reject) => {
 //     Database.query(
@@ -96,17 +147,6 @@ const deletUser = (id) => {
 //   return new Promise((resolve, reject) => {
 //     Database.query(
 //       `update ${table} set activo = 'activo' WHERE id = ${id};`,
-//       (err, res) => {
-//         err ? reject(err) : resolve(res);
-//       }
-//     );
-//   });
-// };
-
-// const login = (table, data) => {
-//   return new Promise((resolve, reject) => {
-//     Database.query(
-//       `SELECT * FROM ${table} WHERE user = "${data.user}" and clave = "${data.clave}"`,
 //       (err, res) => {
 //         err ? reject(err) : resolve(res);
 //       }
@@ -185,7 +225,8 @@ module.exports = {
   searchUsers,
   createUsers,
   updateUsers,
-  deletUser,
+  deleteUser,
+  loginUsers,
   // login,
   // list_inactive,
   // reactivated,
