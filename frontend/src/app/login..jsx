@@ -9,6 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BiCoffeeTogo } from "react-icons/bi";
 //? to import components and styles
 import UserInput from "../components/input";
+import Modal from "react-modal";
 import "../css/login.css";
 
 //! Create the Login that is the component principal
@@ -18,6 +19,8 @@ const LoginUser = () => {
     user: "",
     clave: "",
   });
+
+  const [modal, setModal] = useState(false);
 
   //? creating the handler change the of inputs components
   const onChange = (e) => {
@@ -40,10 +43,17 @@ const LoginUser = () => {
       .then((res) => {
         if (values.clave != "" && values.user != "") {
           console.log(res.data);
-          if (res.data.status === "Success") {
+          if (res.data.message === "Login Success") {
             navigate("/home");
           } else {
-            alert("Contraseña o usuario incorrectos");
+            // alert("Contraseña o usuario incorrectos");
+            <Modal
+              isOpen={modal}
+              onRequestClose={() => setModal(false)}
+            >
+              <h1>Contraseña o usuario incorrectos</h1>
+              <button onClick={setModal(false)}>Cerrar</button>
+            </Modal>;
             navigate("/login");
           }
         } else {
