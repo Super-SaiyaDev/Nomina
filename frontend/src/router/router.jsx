@@ -5,6 +5,7 @@ import Principal from "../app/dashboard";
 import Table from "../app/table";
 import Users from "../app/usuarios";
 import Employees from "../app/empleados";
+import Percepciones from "../app/percepciones";
 
 const Path = () => {
   return (
@@ -17,6 +18,7 @@ const Path = () => {
             <Route path="/usuarios" element={<Users/>}></Route>
             <Route path="/empleados" element={<Employees/>}></Route>
             <Route path="*" element={<h1>Hola mundo</h1>}></Route>
+            <Route path="/percepciones" element={<Percepciones/>}></Route>
         </Routes>
     </Router>
     </>

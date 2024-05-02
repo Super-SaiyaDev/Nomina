@@ -70,7 +70,7 @@ function Sliderbar() {
             className={activeMenu === "compra" ? "active" : ""}
             onClick={() => handleMenuClick("compra")}
           >
-            <Link className="lnk-sidebar" to="/percepciones">
+            <Link className="lnk-sidebar" to="/Percepciones">
               Percepciones
             </Link>
           </li>

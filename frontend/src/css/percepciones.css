@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 270px;
+    min-height: 45vh;
+    background-color: aliceblue;
+    padding: 20px;
+  }
+  
+  .input-group {
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+    gap: 40px;
+    margin: 20px;
+    padding: 12px;
+    width: 100%;
+  }
+  
+  .input-group .input-field {
+    display: grid;
+    grid-template-columns: repeat(1fr, 2fr);
+  }
+  
+  .input-group .input-field label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .input-group .input-field input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .panel-employees {
+    background-color: red;
+  }
+  
+  .panel-percepciones {
+    background-color: green;
+  }
