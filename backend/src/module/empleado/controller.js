@@ -1,8 +1,8 @@
-// const db = require("../../database/database");
+const db = require("../../database/DbEmployees");
 
-// const listEmployees = () => {
-//   return db.listEmployees("employees");
-// };
+const listEmployees = () => {
+  return db.listEmployees("employees");
+};
 
 // const list_inactive = () => {
 //   return db.list_inactive(table);
@@ -29,12 +29,12 @@
 // };
 
 
-// module.exports = {
-//   listEmployees,
+module.exports = {
+  listEmployees,
 //   search,
 //   list_inactive,
 //   reactivated,
 //   add,
 //   delet,
 //   update,
-// };
+};

@@ -72,12 +72,12 @@ const listEmployees = (table) => {
 // };
 
 module.exports = {
-  listUsers,
-  searchUsers,
-  createUsers,
-  updateUsers,
-  deleteUser,
-  loginUsers,
+  listEmployees,
+  // searchUsers,
+  // createUsers,
+  // updateUsers,
+  // deleteUser,
+  // loginUsers,
   // login,
   // list_inactive,
   // reactivated,

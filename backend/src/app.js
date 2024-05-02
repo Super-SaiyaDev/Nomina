@@ -9,6 +9,7 @@ const config = require("./config");
 //! modulo cliente
 const Empleador = require("./module/empleado/router");
 const moduleUsers = require("./module/Users/router");
+const modulePercepciones = require("./module/percepciones/router");
 // const login = require("./module/system/login/router");
 
 const app = express();
@@ -32,5 +33,6 @@ app.use(cookie())
 //? Rutas
 app.use("/api/employees", Empleador);
 app.use("/api/users", moduleUsers);
+app.use("/api/Percepciones", modulePercepciones);
 
 module.exports = app;
