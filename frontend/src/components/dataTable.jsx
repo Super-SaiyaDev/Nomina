@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { RiEdit2Fill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
+import '../css/dataTable.css';
 
 const handlerDelete = async (id) => {
   try {
@@ -35,13 +36,13 @@ function DataTable({ data, rows, columns }) {
       ))}
       <td>
         <Link to={`/update/${item.IdUsers}`}>
-          <button>
-            <RiEdit2Fill />
+          <button className="btn-operation btn-edit" >
+            <RiEdit2Fill  />
           </button>
         </Link>
       </td>
       <td>
-        <button onClick={() => handlerDelete(item.IdUsers)}>
+        <button classNam="btn-operation btn-delete"  onClick={() => handlerDelete(item.IdUsers)}>
           <MdDelete />
         </button>
       </td>
@@ -53,7 +54,7 @@ function DataTable({ data, rows, columns }) {
       <table>
         <thead>
           <tr>
-            {columns.map((column, key) => (
+            {columns.map((column, key) =>  (
               <th key={key}>{column}</th>
             ))}
             <th>Edit</th>

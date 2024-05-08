@@ -4,44 +4,60 @@ import Sliderbar from "../components/sidebar";
 import Table from "./table";
 
 const Percepciones = () => {
-  const columns = [
-    "RNC",
-    "Name",
-    "Last",
-    "activo",
-    "Gender",
-    "Civil Status",
-    "Tel",
-    "BirthDate",
-    "Address",
-    "Country",
-    "State",
-    "City",
-    "Postal Code",
-    "Email",
-    "Clave",
-  ];
-
   const rows = [
     "RNC",
     "NameEmployee",
     "Lastname",
-    "activo",
     "Gender",
+    "BirthDate",
     "CivilStatus",
     "Tel",
-    "BirthDate",
     "Address",
     "Country",
-    "State",
     "City",
+    "State",
     "PostalCode",
     "Email",
-    "Clave",
+    "TypeContract",
+    "ContractTerms",
+    "WorkingTime",
+    "InitialDate",
+    "Descriptions",
+    "SalaryBase",
+    "Bonus",
+    "PayDate",
+    "PayTerms",
+    "OverTime",
+  ];
+
+  const columns = [
+    "RNC",
+    "Nombre",
+    "Segundo nombre		",
+    "Genero	",
+    "Fecha de Nacimiento",
+    "Estado Civil 	",
+    "Telefono",
+    "Direccion		",
+    "Pais	",
+    "Estado",
+    "Ciudad	",
+    "Codigo Postal",
+    "Email	",
+    "Tipo de contracto",
+    "Terminos del contrato",
+    "Tiempo Trabajo",
+    "Dia Inicial",
+    "Descripcion",
+    "Salario Base",
+    "Bonificaciones",
+    "Fecha de pago",
+    "Terminos de pago",
+    "OverTime",
   ];
 
   const api = {
-    url: "http://localhost:3000/api/employees",
+    url: "http://localhost:3000/api/percepciones",
   };
 
   return (
