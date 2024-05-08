@@ -33,6 +33,6 @@ app.use(cookie())
 //? Rutas
 app.use("/api/employees", Empleador);
 app.use("/api/users", moduleUsers);
-app.use("/api/Percepciones", modulePercepciones);
+app.use("/api/percepciones", modulePercepciones);
 
 module.exports = app;

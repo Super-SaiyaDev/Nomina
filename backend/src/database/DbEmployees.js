@@ -1,6 +1,5 @@
 const db = require("mysql");
 const config = require("../config");
-const bcrypt = require('bcryptjs');
 
 const conection = {
   host: config.mysql.host,
