@@ -1,7 +1,34 @@
 /* i'm creating the views of the bd */ USE NominaSystem;
 
--- these are the views of the users table --
-ALTER VIEW UsersView AS
+CREATE VIEW
+    listemployeespercepciones AS listEmployeesPercepciones AS
+SELECT
+    `e`.`RNC` AS `RNC`,
+    `e`.`NameEmployee` AS `NameEmployee`,
+    `e`.`Lastname` AS `Lastname`,
+    `e`.`Tel` AS `Tel`,
+    `e`.`Address` AS `Address`,
+    `e`.`Country` AS `Country`,
+    `e`.`State` AS `State`,
+    `e`.`City` AS `City`,
+    `e`.`PostalCode` AS `PostalCode`,
+    `e`.`Email` AS `Email`,
+    `s`.`SalaryBase` AS `SalaryBase`,
+    `s`.`Bonus` AS `Bonus`,
+    `s`.`PayDate` AS `PayDate`,
+    `s`.`PayTerms` AS `PayTerms`,
+    `s`.`OverTime` AS `OverTime`
+from
+    (
+        (
+            `nominasystem`.`employees` `e`
+            join `nominasystem`.`contract` `c` on (`e`.`IdContract` = `c`.`IdContract`)
+        )
+        join `nominasystem`.`salary` `s` on (`c`.`IdSalary` = `s`.`IdSalary`)
+    );
+    -- these are the views of the users table --
+CREATE VIEW
+    UsersView AS
 SELECT
     U.IdUsers,
     U.NameUser,
@@ -135,9 +162,7 @@ END / / DELIMITER;
 CALL LoginUsers ("Simon1520Arias", "123456");
 
 -- ----------------------------------------- for the Perceptions of the employees  -------------------------------------------------
-DELIMITER //
-CREATE PROCEDURE PerceptionsEmployees () 
-BEGIN
+DELIMITER / / CREATE PROCEDURE PerceptionsEmployees () BEGIN
 SELECT
     E.NameEmployee,
     E.Lastname,
@@ -165,7 +190,6 @@ FROM
     INNER JOIN contract AS C ON E.IdContract = C.IdContract
     INNER JOIN salary as S ON c.IdSalary = s.IdSalary;
 
-END //
-DELIMITER ;
+END / / DELIMITER;
 
 CALL PerceptionsEmployees ();

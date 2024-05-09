@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DataTable from "../components/dataTable";
 import "../css/table.css";
-import { IoSearchOutline, IoMdPersonAdd } from "react-icons/io5";
+import { IoSearchOutline } from "react-icons/io5";
+import { IoMdPersonAdd } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import Create from "../components/create";
 
-const Table = ({ columns, rows, api, input }) => {
+const Table = ({ columns, rows, api, input = [] }) => {
   const [isInputFocused, setInputFocused] = useState(false);
   const [datos, setData] = useState([{}]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -39,7 +40,7 @@ const Table = ({ columns, rows, api, input }) => {
                 isOpen={modalIsOpen}
                 onRequestClose={() => setModalIsOpen(false)}
               >
-                <Create inputs={input} setModalIsOpen={setModalIsOpen} />
+                <Create input={input}  setModalIsOpen={setModalIsOpen} />
               </Modal>
               <button>
                 <Link to="/history">

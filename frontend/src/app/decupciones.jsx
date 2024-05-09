@@ -31,9 +31,9 @@ const Decuciones = () => {
     "DP",
   ];
   const input = [
-    { type: "text", lblName: "usuario", name: "usuario" },
-    { type: "password", lblName: "clave", name: "clave" },
-    { type: "email", lblName: "correo", name: "correo" },
+    { type: "text", lblName: "usuario", name: "usuario" ,readonly: false,   },
+    { type: "password", lblName: "Clave", name: "clave" ,readonly: true , value : "123456"  },
+    { type: "email", lblName: "correo", name: "correo"  ,readonly: false,   },
   ];
   const api = { url: "http://localhost:3000/api/users/" };
 
